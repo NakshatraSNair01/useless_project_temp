@@ -2,26 +2,26 @@
 
 
 
-# [Project Name] 🎯
+# [Oru Kalyanam Okke Vende??] 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: [DecodeX]
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Team Lead: [Lavanya S] - [LBS Institute Of Technology For Women]
+- Member 2: [Nakshatara S Nair] - [LBS Institute Of Technology For Women]
+
 
 ### Project Description
-[2-3 lines about what your project does]
+["Oru Kalyanam Okke Vende??💍" is a hilarious Virtual Marriage Simulator where you can create your dream wedding with a virtual partner, choose the destination, budget, and even get a wedding photo. Complete with unexpected wedding disasters and a divorce button—because real-life commitment is scary, but virtual commitment has an undo button. 😂]
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+[Some people have a very serious problem: they want to marry their crush, but reality has other plans. 💔💍 There is currently no proper solution for experiencing that dream wedding when it has approximately 0% chance of happening in real life. 😭]
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+[So we decided to fix this extremely important problem with absolutely unnecessary technology. 😂 Enter your crush, plan the wedding, choose the destination, take wedding photos, survive disasters, and even get divorced—all virtually, with zero chance of your crush finding out. 💀]
 
 ## Technical Details
 ### Technologies/Components Used
