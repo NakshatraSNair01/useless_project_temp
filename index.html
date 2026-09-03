@@ -3,227 +3,321 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oru Kalyanam Okke Vende???💍</title>
+
+<title>Kalyanam Kazhinjo? 💍</title>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
 <style>
-* {
-    box-sizing: border-box;
+
+*{
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    overflow-x: hidden;
-    font-family: Arial, sans-serif;
-    background: #17111f;
-    color: white;
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#111;
+    overflow:hidden;
 }
 
-#setup {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: linear-gradient(135deg,#ffb6d9,#8e7dff);
+button,
+select,
+input{
+    font-family:inherit;
 }
 
-.panel {
-    width: min(500px,95%);
-    background: rgba(255,255,255,.95);
-    color: #351d35;
-    padding: 30px;
-    border-radius: 30px;
-    box-shadow: 0 20px 70px rgba(0,0,0,.3);
+.setup{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(135deg,#ff758c,#8e44ad);
 }
 
-h1 {
-    text-align: center;
-    font-size: 42px;
-    margin-bottom: 5px;
+.panel{
+    width:100%;
+    max-width:520px;
+    background:white;
+    padding:30px;
+    border-radius:28px;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
 }
 
-.subtitle {
-    text-align: center;
-    opacity: .65;
-    margin-bottom: 25px;
+.panel h1{
+    text-align:center;
+    margin-top:0;
+    font-size:34px;
 }
 
-label {
-    display: block;
-    font-weight: bold;
-    margin-top: 14px;
+.subtitle{
+    text-align:center;
+    color:#777;
+    margin-bottom:25px;
 }
 
-input, select {
-    width: 100%;
-    padding: 13px;
-    border: 2px solid #e3b6d1;
-    border-radius: 12px;
-    margin-top: 5px;
+.field{
+    margin-bottom:16px;
 }
 
-.start {
-    width: 100%;
-    margin-top: 25px;
-    padding: 16px;
-    border: 0;
-    border-radius: 15px;
-    background: #ff4d94;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 16px;
+.field label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
 }
 
-#game {
-    display: none;
-    width: 100%;
-    min-height: 100vh;
+.field input,
+.field select{
+    width:100%;
+    padding:13px;
+    border:2px solid #eee;
+    border-radius:12px;
+    font-size:16px;
+    outline:none;
 }
 
-#canvas-container {
-    position: fixed;
-    inset: 0;
+.field input:focus,
+.field select:focus{
+    border-color:#e84393;
 }
 
-#ui {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
+.start-btn{
+    width:100%;
+    border:0;
+    padding:15px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#e84393,#8e44ad);
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:8px;
 }
 
-.title {
-    text-align: center;
-    padding-top: 20px;
-    text-shadow: 0 3px 10px black;
+.game{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:#78c8ef;
 }
 
-.title h2 {
-    margin: 0;
-    font-size: 25px;
+#scene{
+    position:absolute;
+    inset:0;
 }
 
-.status {
-    margin-top: 5px;
+.topbar{
+    position:absolute;
+    top:12px;
+    left:50%;
+    transform:translateX(-50%);
+    width:calc(100% - 24px);
+    max-width:1000px;
+    z-index:20;
+    background:rgba(255,255,255,.93);
+    border-radius:18px;
+    padding:12px 16px;
+    box-shadow:0 8px 30px rgba(0,0,0,.2);
 }
 
-.controls {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-    pointer-events: auto;
+.names{
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
 }
 
-.controls button {
-    padding: 12px 16px;
-    margin: 5px;
-    border: 0;
-    border-radius: 13px;
-    font-weight: bold;
-    cursor: pointer;
+.status{
+    text-align:center;
+    margin-top:5px;
+    font-weight:bold;
+    color:#e84393;
 }
 
-.photo {
-    background: #8d7aff;
-    color: white;
+.stats{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:7px;
 }
 
-.disaster {
-    background: #ff941f;
-    color: white;
+.stat{
+    background:#f8e8f1;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:13px;
 }
 
-.certificate {
-    background: #d4a72c;
-    color: white;
+.controls{
+    position:absolute;
+    bottom:15px;
+    left:50%;
+    transform:translateX(-50%);
+    width:calc(100% - 24px);
+    max-width:1000px;
+    z-index:20;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
 }
 
-.divorce {
-    background: #444;
-    color: white;
+.controls button{
+    border:0;
+    background:white;
+    padding:16px 22px;
+    border-radius:14px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
 }
 
-.popup {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.7);
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    z-index: 20;
-    pointer-events: auto;
+.controls button:hover{
+    transform:translateY(-2px);
 }
 
-.popup-box {
-    width: min(520px,95%);
-    background: white;
-    color: #321c35;
-    padding: 25px;
-    border-radius: 25px;
-    text-align: center;
-    max-height: 90vh;
-    overflow: auto;
+.flash{
+    position:fixed;
+    inset:0;
+    background:white;
+    opacity:0;
+    pointer-events:none;
+    z-index:100;
+    transition:opacity .12s;
 }
 
-.popup-box button {
-    margin-top: 20px;
-    border: 0;
-    padding: 12px 25px;
-    border-radius: 12px;
-    background: #ff4d94;
-    color: white;
-    font-weight: bold;
+.flash.active{
+    opacity:1;
 }
 
-.fake-photo {
-    height: 220px;
-    border-radius: 20px;
-    background: linear-gradient(135deg,#ffc4df,#c8baff);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 75px;
+.popup{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:90;
+    background:rgba(0,0,0,.65);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
 }
 
-.cert {
-    border: 8px double #bd9228;
-    background: #fffbea;
-    padding: 25px;
+.popup-box{
+    width:100%;
+    max-width:560px;
+    max-height:90vh;
+    overflow:auto;
+    background:white;
+    border-radius:24px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
 }
 
-.cert h2 {
-    color: #9b7300;
+.popup-box h2{
+    margin-top:0;
 }
 
-.disaster-text {
-    font-size: 22px;
+.popup-box button{
+    border:0;
+    background:#e84393;
+    color:white;
+    padding:11px 20px;
+    border-radius:12px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-#divorceScreen {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 50;
-    background: #171717;
-    color: white;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 30px;
+.photo{
+    width:100%;
+    border-radius:15px;
+    display:block;
+    margin:15px 0;
+    border:4px solid #eee;
 }
 
-#divorceScreen h1 {
-    color: #ff6b9d;
+.certificate{
+    border:7px double #c49a3a;
+    padding:25px;
+    background:#fffdf3;
+    border-radius:10px;
 }
 
-.restart {
-    border: 0;
-    padding: 14px 22px;
-    border-radius: 14px;
-    cursor: pointer;
+.certificate h2{
+    color:#9b751d;
 }
+
+.visa{
+    border:3px solid #1f4c8c;
+    border-radius:15px;
+    padding:20px;
+    background:linear-gradient(135deg,#edf5ff,#fff);
+    text-align:left;
+}
+
+.visa-title{
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    color:#1f4c8c;
+}
+
+.visa-approved{
+    text-align:center;
+    font-size:20px;
+    color:#16834b;
+    font-weight:bold;
+    margin:10px;
+}
+
+.divorce{
+    position:fixed;
+    inset:0;
+    z-index:120;
+    display:none;
+    background:#161616;
+    color:white;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+}
+
+.divorce h1{
+    font-size:45px;
+}
+
+.divorce button{
+    border:0;
+    padding:14px 25px;
+    border-radius:12px;
+    background:#e84393;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+@media(max-width:600px){
+
+    .panel{
+        padding:22px;
+    }
+
+    .panel h1{
+        font-size:28px;
+    }
+
+    .names{
+        font-size:18px;
+    }
+
+    .controls button{
+        font-size:14px;
+        padding:13px 16px;
+    }
+
+}
+
 </style>
 </head>
 
@@ -231,172 +325,247 @@ input, select {
 
 <!-- SETUP -->
 
-<div id="setup">
+<div class="setup" id="setup">
 
-<div class="panel">
+    <div class="panel">
 
-<h1>💍</h1>
+        <h1>💍 Kalyanam Kazhinjo?</h1>
 
-<h1>Oru Kalyanam Okke Vende???💍</h1>
+        <div class="subtitle">
+            The world's most unnecessary virtual wedding simulator.
+        </div>
 
-<p class="subtitle">
-The world's most unnecessary virtual wedding simulator.
-</p>
+        <div class="field">
+            <label>Your Name</label>
+            <input id="yourName" placeholder="Enter your name">
+        </div>
 
-<label>Your Name</label>
-<input id="yourName" placeholder="Enter your name">
+        <div class="field">
+            <label>Your Gender</label>
+            <select id="yourGender">
+                <option value="girl">Girl 👩</option>
+                <option value="boy">Boy 👨</option>
+            </select>
+        </div>
 
-<label>Your Gender</label>
-<select id="yourGender">
-<option value="girl">Girl 👩</option>
-<option value="boy">Boy 👨</option>
-</select>
+        <div class="field">
+            <label>Crush Name</label>
+            <input id="crushName" placeholder="Enter your crush's name">
+        </div>
 
-<label>Crush Name</label>
-<input id="crushName" placeholder="Enter crush name">
+        <div class="field">
+            <label>Crush Gender</label>
+            <select id="crushGender">
+                <option value="girl">Girl 👩</option>
+                <option value="boy">Boy 👨</option>
+            </select>
+        </div>
 
-<label>Crush Gender</label>
-<select id="crushGender">
-<option value="girl">Girl 👩</option>
-<option value="boy">Boy 👨</option>
-</select>
+        <div class="field">
+            <label>Wedding Destination</label>
 
-<label>Wedding Destination</label>
-<select id="destination">
-<option value="kerala">Traditional Kerala 🥥</option>
-<option value="beach">Beach 🌴</option>
-<option value="palace">Royal Palace 👑</option>
-<option value="mountain">Mountain ⛰️</option>
-</select>
+            <select id="destination">
 
-<button class="start" onclick="startWedding()">
-💒 START THE WEDDING
-</button>
+                <option value="kerala">
+                    Traditional Kerala 🥥
+                </option>
 
-</div>
+                <option value="beach">
+                    Beach 🌴
+                </option>
+
+                <option value="palace">
+                    Royal Palace 👑
+                </option>
+
+                <option value="mountain">
+                    Mountain ⛰️
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="field">
+
+            <label>Wedding Budget</label>
+
+            <select id="budget">
+
+                <option value="50000">
+                    ₹50,000 — Simple Wedding
+                </option>
+
+                <option value="500000">
+                    ₹5,00,000 — Fancy Wedding
+                </option>
+
+                <option value="5000000">
+                    ₹50,00,000 — Luxury Wedding
+                </option>
+
+                <option value="50000000">
+                    ₹5 Crore — Absolutely Insane Wedding
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="field">
+
+            <label>Wedding Guests</label>
+
+            <select id="guests">
+
+                <option value="5">5 Guests</option>
+                <option value="15">15 Guests</option>
+                <option value="30">30 Guests</option>
+                <option value="60">60 Guests</option>
+                <option value="100">100 Guests</option>
+
+            </select>
+
+        </div>
+
+        <button class="start-btn" onclick="startWedding()">
+            💒 Start The Bad Decision
+        </button>
+
+    </div>
+
 </div>
 
 
 <!-- GAME -->
 
-<div id="game">
+<div class="game" id="game">
 
-<div id="canvas-container"></div>
+    <div id="scene"></div>
 
-<div id="ui">
+    <div class="topbar">
 
-<div class="title">
+        <div class="names" id="names">
+            ❤️ You ❤️ Crush
+        </div>
 
-<h2>
-<span id="display1"></span>
-❤️
-<span id="display2"></span>
-</h2>
+        <div class="status" id="status">
+            Preparing the wedding...
+        </div>
 
-<div class="status">
-Status:
-<b id="status">Preparing...</b>
+        <div class="stats">
+
+            <div class="stat" id="destinationStat">
+                📍 Kerala
+            </div>
+
+            <div class="stat" id="budgetStat">
+                💰 ₹50,000
+            </div>
+
+            <div class="stat" id="guestStat">
+                👥 5 Guests
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="controls">
+
+        <button onclick="photographerClick()">
+            📷 Wedding Photo
+        </button>
+
+        <button onclick="weddingDisaster()">
+            🚨 Wedding Disaster
+        </button>
+
+        <button onclick="showCertificate()">
+            📜 Certificate
+        </button>
+
+        <button onclick="showBudget()">
+            💰 Budget
+        </button>
+
+        <button onclick="showVisa()">
+            ✈️ Visa
+        </button>
+
+        <button onclick="divorce()">
+            💔 Divorce
+        </button>
+
+    </div>
+
 </div>
 
-</div>
 
-<div class="controls">
-
-<button class="photo" onclick="weddingPhoto()">
-📸 Wedding Photo
-</button>
-
-<button class="disaster" onclick="weddingDisaster()">
-🚨 Wedding Disaster
-</button>
-
-<button class="certificate" onclick="showCertificate()">
-📜 Certificate
-</button>
-
-<button class="divorce" onclick="divorce()">
-💔 Divorce
-</button>
-
-</div>
-
-</div>
-</div>
+<div class="flash" id="flash"></div>
 
 
 <!-- POPUP -->
 
 <div class="popup" id="popup">
 
-<div class="popup-box">
+    <div class="popup-box">
 
-<h2 id="popupTitle"></h2>
+        <h2 id="popupTitle"></h2>
 
-<div id="popupContent"></div>
+        <div id="popupContent"></div>
 
-<button onclick="closePopup()">
-Okay 😂
-</button>
+        <br>
 
-</div>
+        <button onclick="closePopup()">
+            Close
+        </button>
+
+    </div>
 
 </div>
 
 
 <!-- DIVORCE -->
 
-<div id="divorceScreen">
+<div class="divorce" id="divorceScreen">
 
-<div>
+    <div>
 
-<h1>💔 DIVORCE COURT</h1>
+        <h1>💔 DIVORCED</h1>
 
-<h2 id="divorceNames"></h2>
+        <p id="divorceText"></p>
 
-<p>
-Marriage duration:
-</p>
+        <p>
+            Marriage duration: approximately 47 seconds.
+        </p>
 
-<h2>47 seconds 😭</h2>
+        <p>
+            Reason: This was a terrible idea.
+        </p>
 
-<p>
-After careful consideration,
-the couple has decided...
-</p>
+        <button onclick="location.reload()">
+            🔄 Start Another Bad Decision
+        </button>
 
-<h2>
-THIS WAS A TERRIBLE IDEA.
-</h2>
-
-<h3>Marriage Status: ❌ CANCELLED</h3>
-
-<button class="restart" onclick="location.reload()">
-🔄 Marry Someone Else
-</button>
+    </div>
 
 </div>
 
-</div>
-
-
-<!-- THREE.JS -->
-
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
 <script>
-
-/* =========================
-   GLOBAL VARIABLES
-========================= */
 
 let scene;
 let camera;
 let renderer;
 
-let person1;
-let person2;
+let yourPerson;
+let crushPerson;
+let photographer;
 
-let clock = new THREE.Clock();
+let guestsGroup;
+let weddingObjects = [];
 
 let weddingStarted = false;
 let married = false;
@@ -408,1049 +577,2135 @@ let yourGender = "";
 let crushGender = "";
 
 let destination = "";
+let budget = 0;
+let guestCount = 0;
+
+let latestWeddingPhoto = null;
+let photoBusy = false;
+
+let confettiPieces = [];
 
 
-/* =========================
-   START WEDDING
-========================= */
+// ======================================================
+// BASIC HELPERS
+// ======================================================
 
-function startWedding() {
+function money(n){
 
-yourName =
-document.getElementById("yourName").value.trim();
-
-crushName =
-document.getElementById("crushName").value.trim();
-
-yourGender =
-document.getElementById("yourGender").value;
-
-crushGender =
-document.getElementById("crushGender").value;
-
-destination =
-document.getElementById("destination").value;
-
-
-if (!yourName || !crushName) {
-
-alert("Enter both names first 😭");
-
-return;
+    return "₹" + Number(n).toLocaleString("en-IN");
 
 }
 
 
-document.getElementById("setup").style.display =
-"none";
+function destinationName(){
 
-document.getElementById("game").style.display =
-"block";
+    const names = {
 
-document.getElementById("display1").innerText =
-yourName;
+        kerala:"Traditional Kerala 🥥",
+        beach:"Beach 🌴",
+        palace:"Royal Palace 👑",
+        mountain:"Mountain ⛰️"
 
-document.getElementById("display2").innerText =
-crushName;
+    };
 
-
-createWorld();
+    return names[destination];
 
 }
 
 
-/* =========================
-   CREATE WORLD
-========================= */
+function openPopup(title,content){
 
-function createWorld() {
+    document.getElementById("popupTitle").innerHTML=title;
 
-scene = new THREE.Scene();
+    document.getElementById("popupContent").innerHTML=content;
 
-scene.background =
-new THREE.Color(0x9bdcff);
-
-
-/* CAMERA */
-
-camera = new THREE.PerspectiveCamera(
-55,
-window.innerWidth / window.innerHeight,
-0.1,
-1000
-);
-
-camera.position.set(0,6,16);
-
-camera.lookAt(0,2,0);
-
-
-/* RENDERER */
-
-renderer =
-new THREE.WebGLRenderer({
-antialias:true
-});
-
-renderer.setSize(
-window.innerWidth,
-window.innerHeight
-);
-
-renderer.shadowMap.enabled = true;
-
-document
-.getElementById("canvas-container")
-.appendChild(renderer.domElement);
-
-
-/* LIGHT */
-
-const ambient =
-new THREE.AmbientLight(
-0xffffff,
-1.7
-);
-
-scene.add(ambient);
-
-
-const sun =
-new THREE.DirectionalLight(
-0xffffff,
-2
-);
-
-sun.position.set(
-5,
-12,
-8
-);
-
-sun.castShadow = true;
-
-scene.add(sun);
-
-
-/* GROUND */
-
-const groundGeometry =
-new THREE.PlaneGeometry(
-100,
-100
-);
-
-const groundMaterial =
-new THREE.MeshStandardMaterial({
-color: getGroundColor()
-});
-
-const ground =
-new THREE.Mesh(
-groundGeometry,
-groundMaterial
-);
-
-ground.rotation.x =
--Math.PI / 2;
-
-ground.receiveShadow = true;
-
-scene.add(ground);
-
-
-/* DESTINATION */
-
-createDestination();
-
-
-/* CHARACTERS */
-
-person1 =
-createPerson(
-yourGender,
-yourName,
--7
-);
-
-person2 =
-createPerson(
-crushGender,
-crushName,
-7
-);
-
-scene.add(person1);
-scene.add(person2);
-
-
-/* START ANIMATION */
-
-weddingStarted = true;
-
-document.getElementById("status").innerText =
-"🚶 Walking...";
-
-
-animate();
+    document.getElementById("popup").style.display="flex";
 
 }
 
 
-/* =========================
-   GROUND COLORS
-========================= */
+function closePopup(){
 
-function getGroundColor() {
-
-if(destination === "beach")
-return 0xe6d18a;
-
-if(destination === "mountain")
-return 0x91c78a;
-
-if(destination === "palace")
-return 0xcab4d9;
-
-return 0xd9c28d;
+    document.getElementById("popup").style.display="none";
 
 }
 
 
-/* =========================
-   CREATE CHARACTER
-========================= */
+// ======================================================
+// START WEDDING
+// ======================================================
 
-function createPerson(gender,name,x) {
+function startWedding(){
 
-const group =
-new THREE.Group();
+    yourName=document.getElementById("yourName").value.trim();
 
+    crushName=document.getElementById("crushName").value.trim();
 
-/* BODY */
+    if(!yourName) yourName="Anonymous";
 
-const bodyGeometry =
-new THREE.CapsuleGeometry(
-0.75,
-1.7,
-8,
-16
-);
+    if(!crushName) crushName="My Crush";
 
-const bodyMaterial =
-new THREE.MeshStandardMaterial({
+    yourGender=document.getElementById("yourGender").value;
 
-color:
-gender === "girl"
-? 0xe34d91
-: 0x4775d1
+    crushGender=document.getElementById("crushGender").value;
 
-});
+    destination=document.getElementById("destination").value;
 
-const body =
-new THREE.Mesh(
-bodyGeometry,
-bodyMaterial
-);
+    budget=Number(document.getElementById("budget").value);
 
-body.position.y = 2;
-
-body.castShadow = true;
-
-group.add(body);
+    guestCount=Number(document.getElementById("guests").value);
 
 
-/* HEAD */
+    document.getElementById("setup").style.display="none";
 
-const headGeometry =
-new THREE.SphereGeometry(
-0.65,
-24,
-24
-);
-
-const headMaterial =
-new THREE.MeshStandardMaterial({
-color:0xf2b28d
-});
-
-const head =
-new THREE.Mesh(
-headGeometry,
-headMaterial
-);
-
-head.position.y = 3.7;
-
-head.castShadow = true;
-
-group.add(head);
+    document.getElementById("game").style.display="block";
 
 
-/* HAIR */
-
-const hairGeometry =
-new THREE.SphereGeometry(
-0.68,
-24,
-24
-);
-
-const hairMaterial =
-new THREE.MeshStandardMaterial({
-color:0x302027
-});
-
-const hair =
-new THREE.Mesh(
-hairGeometry,
-hairMaterial
-);
-
-hair.scale.set(
-1,
-gender === "girl" ? 1.2 : .65,
-1
-);
-
-hair.position.y =
-gender === "girl"
-? 4.05
-: 4.15;
-
-hair.castShadow = true;
-
-group.add(hair);
+    document.getElementById("names").innerHTML=
+        `${yourName} ❤️ ${crushName}`;
 
 
-/* EYES */
+    document.getElementById("destinationStat").innerHTML=
+        "📍 " + destinationName();
 
-const eyeMaterial =
-new THREE.MeshStandardMaterial({
-color:0x111111
-});
 
-for(let i=-1;i<=1;i+=2) {
+    document.getElementById("budgetStat").innerHTML=
+        "💰 " + money(budget);
 
-const eye =
-new THREE.Mesh(
-new THREE.SphereGeometry(
-0.07,
-10,
-10
-),
-eyeMaterial
-);
 
-eye.position.set(
-i*.22,
-3.75,
-.6
-);
+    document.getElementById("guestStat").innerHTML=
+        "👥 " + guestCount + " Guests";
 
-group.add(eye);
+
+    initThree();
 
 }
 
 
-/* LEGS */
+// ======================================================
+// THREE.JS
+// ======================================================
 
-const legMaterial =
-new THREE.MeshStandardMaterial({
-color:
-gender === "girl"
-? 0x8c2859
-: 0x242b45
-});
+function initThree(){
 
-for(let i=-1;i<=1;i+=2) {
+    scene=new THREE.Scene();
 
-const leg =
-new THREE.Mesh(
-new THREE.CapsuleGeometry(
-0.18,
-0.9,
-6,
-10
-),
-legMaterial
-);
-
-leg.position.set(
-i*.3,
-.35,
-0
-);
-
-leg.castShadow = true;
-
-group.add(leg);
-
-}
+    scene.background=new THREE.Color(
+        destination==="mountain"
+        ?0x9ed7f2
+        :0x79c8ed
+    );
 
 
-/* LABEL */
+    camera=new THREE.PerspectiveCamera(
+        60,
+        window.innerWidth/window.innerHeight,
+        .1,
+        1000
+    );
 
-const label =
-createLabel(name);
+    camera.position.set(0,6,16);
 
-label.position.y = 5.1;
-
-group.add(label);
-
-
-/* POSITION */
-
-group.position.x = x;
-
-return group;
-
-}
+    camera.lookAt(0,2,0);
 
 
-/* =========================
-   NAME LABEL
-========================= */
+    renderer=new THREE.WebGLRenderer({
 
-function createLabel(text) {
+        antialias:true,
 
-const canvas =
-document.createElement("canvas");
+        preserveDrawingBuffer:true
 
-canvas.width = 512;
-canvas.height = 128;
-
-const ctx =
-canvas.getContext("2d");
-
-ctx.fillStyle =
-"rgba(255,255,255,.9)";
-
-ctx.roundRect(
-30,
-20,
-452,
-88,
-25
-);
-
-ctx.fill();
-
-ctx.fillStyle =
-"#351d35";
-
-ctx.font =
-"bold 42px Arial";
-
-ctx.textAlign =
-"center";
-
-ctx.fillText(
-text,
-256,
-78
-);
-
-const texture =
-new THREE.CanvasTexture(canvas);
-
-const material =
-new THREE.SpriteMaterial({
-map:texture,
-transparent:true
-});
-
-const sprite =
-new THREE.Sprite(material);
-
-sprite.scale.set(
-3.2,
-.8,
-1
-);
-
-return sprite;
-
-}
+    });
 
 
-/* =========================
-   DESTINATION
-========================= */
+    renderer.setSize(
+        window.innerWidth,
+        window.innerHeight
+    );
 
-function createDestination() {
 
-if(destination === "beach") {
+    renderer.shadowMap.enabled=true;
 
-createPalm(-7,0,-3);
-createPalm(7,0,-3);
+    renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 
-}
 
-if(destination === "kerala") {
+    document.getElementById("scene").appendChild(
+        renderer.domElement
+    );
 
-createPalm(-7,0,-3);
-createPalm(7,0,-3);
 
-createArch();
+    // LIGHTS
 
-}
+    const ambient=new THREE.AmbientLight(
+        0xffffff,
+        1.7
+    );
 
-if(destination === "palace") {
+    scene.add(ambient);
 
-createColumns();
 
-}
+    const sun=new THREE.DirectionalLight(
+        0xffffff,
+        2
+    );
 
-if(destination === "mountain") {
+    sun.position.set(8,15,10);
 
-createMountain(-5,-2);
-createMountain(0,-1);
-createMountain(5,-2);
+    sun.castShadow=true;
 
-}
+    scene.add(sun);
+
+
+    createGround();
+
+    createMandapam();
+
+    createStringLights();
+
+    createChairs();
+
+    createCake();
+
+    createGifts();
+
+    createFlowers();
+
+    createDestinationDecor();
+
+
+    yourPerson=createPerson(
+        yourGender,
+        yourName,
+        0xff80ab
+    );
+
+    crushPerson=createPerson(
+        crushGender,
+        crushName,
+        0x7c9cff
+    );
+
+
+    yourPerson.position.set(-7,0,0);
+
+    crushPerson.position.set(7,0,0);
+
+
+    scene.add(yourPerson);
+
+    scene.add(crushPerson);
+
+
+    photographer=createPhotographer();
+
+    scene.add(photographer);
+
+
+    createGuests();
+
+
+    weddingStarted=true;
+
+    document.getElementById("status").innerHTML=
+        "💒 The wedding is starting...";
+
+
+    animate();
 
 }
 
 
-/* =========================
-   PALM TREE
-========================= */
+// ======================================================
+// GROUND
+// ======================================================
 
-function createPalm(x,y,z) {
+function createGround(){
 
-const trunk =
-new THREE.Mesh(
-new THREE.CylinderGeometry(
-.25,
-.4,
-4
-),
-new THREE.MeshStandardMaterial({
-color:0x80532f
-})
-);
-
-trunk.position.set(
-x,
-2,
-z
-);
-
-scene.add(trunk);
+    let color=0x75b85c;
 
 
-const leaves =
-new THREE.Mesh(
-new THREE.SphereGeometry(
-1.7,
-12,
-12
-),
-new THREE.MeshStandardMaterial({
-color:0x3e9e55
-})
-);
+    if(destination==="beach")
+        color=0xe5d19b;
 
-leaves.scale.y = .4;
+    if(destination==="kerala")
+        color=0x70ad58;
 
-leaves.position.set(
-x,
-4.4,
-z
-);
+    if(destination==="palace")
+        color=0x858585;
 
-scene.add(leaves);
+    if(destination==="mountain")
+        color=0x6b9b70;
+
+
+    const ground=new THREE.Mesh(
+
+        new THREE.PlaneGeometry(
+            50,
+            50
+        ),
+
+        new THREE.MeshStandardMaterial({
+            color:color
+        })
+
+    );
+
+
+    ground.rotation.x=-Math.PI/2;
+
+    ground.receiveShadow=true;
+
+    scene.add(ground);
 
 }
 
 
-/* =========================
-   MOUNTAINS
-========================= */
+// ======================================================
+// PERSON
+// ======================================================
 
-function createMountain(x,y) {
+function createPerson(gender,name,bodyColor){
 
-const mountain =
-new THREE.Mesh(
-new THREE.ConeGeometry(
-3,
-5,
-4
-),
-new THREE.MeshStandardMaterial({
-color:0x7b9b78
-})
-);
-
-mountain.position.set(
-x,
-2,
--7
-);
-
-scene.add(mountain);
-
-}
+    const group=new THREE.Group();
 
 
-/* =========================
-   PALACE
-========================= */
+    const body=new THREE.Mesh(
 
-function createColumns() {
+        new THREE.CapsuleGeometry(
+            .7,
+            1.5,
+            8,
+            16
+        ),
 
-for(let x=-7;x<=7;x+=3.5) {
+        new THREE.MeshStandardMaterial({
+            color:bodyColor
+        })
 
-const column =
-new THREE.Mesh(
-new THREE.CylinderGeometry(
-.4,
-.4,
-6
-),
-new THREE.MeshStandardMaterial({
-color:0xe5c86b
-})
-);
+    );
 
-column.position.set(
-x,
-3,
--4
-);
+    body.position.y=1.4;
 
-scene.add(column);
+    body.castShadow=true;
 
-}
-
-}
+    group.add(body);
 
 
-/* =========================
-   KERALA ARCH
-========================= */
+    const head=new THREE.Mesh(
 
-function createArch() {
+        new THREE.SphereGeometry(
+            .55,
+            24,
+            24
+        ),
 
-const arch =
-new THREE.Mesh(
-new THREE.TorusGeometry(
-3,
-.35,
-12,
-40,
-Math.PI
-),
-new THREE.MeshStandardMaterial({
-color:0xd29b42
-})
-);
+        new THREE.MeshStandardMaterial({
+            color:0xffc69c
+        })
 
-arch.position.set(
-0,
-4,
--3
-);
+    );
 
-scene.add(arch);
+    head.position.y=2.9;
 
-}
+    head.castShadow=true;
+
+    group.add(head);
 
 
-/* =========================
-   ANIMATION
-========================= */
+    // hair
 
-function animate() {
+    const hair=new THREE.Mesh(
 
-requestAnimationFrame(
-animate
-);
+        new THREE.SphereGeometry(
+            .57,
+            24,
+            16,
+            0,
+            Math.PI*2,
+            0,
+            Math.PI*.55
+        ),
 
-if(weddingStarted && !married) {
+        new THREE.MeshStandardMaterial({
+            color:gender==="girl"
+                ?0x26130b
+                :0x151515
+        })
 
-if(person1.position.x < -1.4)
-person1.position.x += .025;
+    );
 
-if(person2.position.x > 1.4)
-person2.position.x -= .025;
+    hair.position.y=3.12;
+
+    group.add(hair);
 
 
-if(
-person1.position.x >= -1.4 &&
-person2.position.x <= 1.4
-) {
+    // eyes
 
-married = true;
+    for(let x of [-.18,.18]){
 
-document.getElementById("status").innerText =
-"💍 MARRIED";
+        const eye=new THREE.Mesh(
 
-createRings();
+            new THREE.SphereGeometry(
+                .055,
+                8,
+                8
+            ),
 
-setTimeout(
-createConfetti,
-300
-);
+            new THREE.MeshBasicMaterial({
+                color:0x111111
+            })
 
-}
+        );
+
+        eye.position.set(
+            x,
+            2.95,
+            -.52
+        );
+
+        group.add(eye);
+
+    }
+
+
+    const label=createLabel(name);
+
+    label.position.set(
+        0,
+        4,
+        0
+    );
+
+    label.scale.set(
+        3,
+        .7,
+        1
+    );
+
+    group.add(label);
+
+
+    return group;
 
 }
 
 
-renderer.render(
-scene,
-camera
-);
+// ======================================================
+// LABEL
+// ======================================================
+
+function createLabel(text){
+
+    const canvas=document.createElement("canvas");
+
+    canvas.width=700;
+
+    canvas.height=160;
+
+
+    const ctx=canvas.getContext("2d");
+
+    ctx.fillStyle="rgba(255,255,255,.95)";
+
+    ctx.beginPath();
+
+    ctx.roundRect(
+        15,
+        15,
+        670,
+        130,
+        35
+    );
+
+    ctx.fill();
+
+
+    ctx.fillStyle="#35152f";
+
+    ctx.font="bold 55px Arial";
+
+    ctx.textAlign="center";
+
+    ctx.fillText(
+        text,
+        350,
+        100
+    );
+
+
+    const texture=new THREE.CanvasTexture(canvas);
+
+
+    const material=new THREE.SpriteMaterial({
+
+        map:texture,
+
+        transparent:true
+
+    });
+
+
+    return new THREE.Sprite(material);
 
 }
 
 
-/* =========================
-   RINGS
-========================= */
+// ======================================================
+// MANDAPAM
+// ======================================================
 
-function createRings() {
+function createMandapam(){
 
-const ringMaterial =
-new THREE.MeshStandardMaterial({
-color:0xffd23f,
-metalness:.8,
-roughness:.2
-});
+    const floor=new THREE.Mesh(
 
-const ring1 =
-new THREE.Mesh(
-new THREE.TorusGeometry(
-.35,
-.08,
-16,
-32
-),
-ringMaterial
-);
+        new THREE.BoxGeometry(
+            12,
+            .35,
+            7
+        ),
 
-const ring2 =
-ring1.clone();
+        new THREE.MeshStandardMaterial({
+            color:0xc58a38
+        })
+
+    );
 
 
-ring1.position.set(
--.8,
-3,
-0
-);
+    floor.position.set(
+        0,
+        .2,
+        -2
+    );
 
-ring2.position.set(
-.8,
-3,
-0
-);
+    floor.receiveShadow=true;
 
-scene.add(ring1);
-scene.add(ring2);
+    scene.add(floor);
 
 
-setTimeout(() => {
+    const positions=[
 
-ring1.position.y = 4;
-ring2.position.y = 4;
+        [-5,-4],
+        [5,-4],
+        [-5,0],
+        [5,0]
 
-},500);
-
-}
-
-
-/* =========================
-   CONFETTI
-========================= */
-
-function createConfetti() {
-
-for(let i=0;i<80;i++) {
-
-const geometry =
-new THREE.BoxGeometry(
-.12,
-.12,
-.12
-);
-
-const material =
-new THREE.MeshStandardMaterial({
-color:
-Math.random()*0xffffff
-});
-
-const piece =
-new THREE.Mesh(
-geometry,
-material
-);
-
-piece.position.set(
-(Math.random()-.5)*16,
-Math.random()*8+3,
-(Math.random()-.5)*8
-);
-
-scene.add(piece);
-
-fallConfetti(piece);
-
-}
-
-}
+    ];
 
 
-function fallConfetti(piece) {
+    positions.forEach(p=>{
 
-let speed =
-.02 + Math.random()*.05;
+        const pillar=new THREE.Mesh(
 
-function fall() {
+            new THREE.CylinderGeometry(
+                .35,
+                .45,
+                5.5,
+                16
+            ),
 
-piece.position.y -= speed;
+            new THREE.MeshStandardMaterial({
+                color:0xe7bd62
+            })
 
-piece.rotation.x += .05;
-
-piece.rotation.z += .04;
-
-if(piece.position.y > -1)
-requestAnimationFrame(fall);
-
-}
-
-fall();
-
-}
+        );
 
 
-/* =========================
-   PHOTO
-========================= */
+        pillar.position.set(
+            p[0],
+            3,
+            p[1]
+        );
 
-function weddingPhoto() {
+        pillar.castShadow=true;
 
-openPopup(
+        scene.add(pillar);
 
-"📸 OFFICIAL WEDDING PHOTO",
+    });
 
-`
-<div class="fake-photo">
-💐💍👩‍❤️‍👨💍💐
-</div>
 
-<h2>
-${yourName} ❤️ ${crushName}
-</h2>
+    const roof=new THREE.Mesh(
 
-<p>
-The photographer has officially
-made this unnecessarily dramatic.
-</p>
-`
+        new THREE.ConeGeometry(
+            7,
+            2.5,
+            4
+        ),
 
-);
+        new THREE.MeshStandardMaterial({
+            color:0xb32655
+        })
+
+    );
+
+
+    roof.position.set(
+        0,
+        6,
+        -2
+    );
+
+    roof.rotation.y=Math.PI/4;
+
+    scene.add(roof);
+
+
+    const board=createLabel(
+        "WELCOME TO THE BAD DECISION"
+    );
+
+
+    board.position.set(
+        0,
+        5,
+        -3
+    );
+
+    board.scale.set(
+        7,
+        1.2,
+        1
+    );
+
+    scene.add(board);
 
 }
 
 
-/* =========================
-   DISASTERS
-========================= */
+// ======================================================
+// STRING LIGHTS
+// ======================================================
 
-const disasters = [
+function createStringLights(){
 
-"The groom forgot the ring. Everyone is pretending it was planned.",
+    for(let x=-9;x<=9;x+=1){
 
-"Random uncle has taken over the wedding stage.",
+        const bulb=new THREE.Mesh(
 
-"The photographer requested the 63rd couple pose.",
+            new THREE.SphereGeometry(
+                .16,
+                12,
+                12
+            ),
 
-"The wedding cake has disappeared.",
+            new THREE.MeshStandardMaterial({
 
-"Someone's mother asked: 'So... when are the kids coming?' 😭",
+                color:0xffdf70,
 
-"The priest forgot what happens next.",
+                emissive:0xffa500,
 
-"Wedding budget suddenly became ₹87 crore.",
+                emissiveIntensity:2
 
-"Someone's chappal has disappeared.",
+            })
 
-"The DJ started a completely unrelated song.",
+        );
 
-"The wedding photographer has fallen into the decoration.",
 
-"Everyone has arrived except the person getting married."
+        bulb.position.set(
+
+            x,
+
+            7+Math.sin(x)*.5,
+
+            -4
+
+        );
+
+
+        scene.add(bulb);
+
+    }
+
+}
+
+
+// ======================================================
+// CHAIRS
+// ======================================================
+
+function createChairs(){
+
+    for(let row=0;row<2;row++){
+
+        for(let x=-8;x<=8;x+=2){
+
+            const chair=new THREE.Mesh(
+
+                new THREE.BoxGeometry(
+                    .9,
+                    .8,
+                    .9
+                ),
+
+                new THREE.MeshStandardMaterial({
+                    color:0x6e3d25
+                })
+
+            );
+
+
+            chair.position.set(
+                x,
+                .4,
+                4+row*2
+            );
+
+
+            scene.add(chair);
+
+        }
+
+    }
+
+}
+
+
+// ======================================================
+// CAKE
+// ======================================================
+
+function createCake(){
+
+    for(let i=0;i<3;i++){
+
+        const cake=new THREE.Mesh(
+
+            new THREE.CylinderGeometry(
+                1.4-i*.25,
+                1.4-i*.25,
+                .75,
+                32
+            ),
+
+            new THREE.MeshStandardMaterial({
+                color:0xffedf6
+            })
+
+        );
+
+
+        cake.position.set(
+            -7,
+            .6+i*.75,
+            -4
+        );
+
+
+        cake.castShadow=true;
+
+        scene.add(cake);
+
+    }
+
+
+    const topper=createLabel("♥");
+
+    topper.position.set(
+        -7,
+        3,
+        -4
+    );
+
+    topper.scale.set(
+        1.2,
+        1.2,
+        1
+    );
+
+    scene.add(topper);
+
+}
+
+
+// ======================================================
+// GIFTS
+// ======================================================
+
+function createGifts(){
+
+    for(let i=0;i<8;i++){
+
+        const gift=new THREE.Mesh(
+
+            new THREE.BoxGeometry(
+                .7,
+                .7,
+                .7
+            ),
+
+            new THREE.MeshStandardMaterial({
+
+                color:new THREE.Color(
+                    Math.random(),
+                    Math.random(),
+                    Math.random()
+                )
+
+            })
+
+        );
+
+
+        gift.position.set(
+            -6+i*1.7,
+            .4,
+            6
+        );
+
+
+        scene.add(gift);
+
+    }
+
+}
+
+
+// ======================================================
+// FLOWERS
+// ======================================================
+
+function createFlowers(){
+
+    for(let i=0;i<35;i++){
+
+        const flower=new THREE.Mesh(
+
+            new THREE.SphereGeometry(
+                .22,
+                10,
+                10
+            ),
+
+            new THREE.MeshStandardMaterial({
+
+                color:
+                    i%2===0
+                    ?0xff6fa8
+                    :0xffffff
+
+            })
+
+        );
+
+
+        flower.position.set(
+
+            (Math.random()-.5)*20,
+
+            .3,
+
+            (Math.random()-.5)*14
+
+        );
+
+
+        scene.add(flower);
+
+    }
+
+}
+
+
+// ======================================================
+// DESTINATION DECOR
+// ======================================================
+
+function createDestinationDecor(){
+
+    if(
+        destination==="beach" ||
+        destination==="kerala"
+    ){
+
+        createPalm(-9,-2);
+
+        createPalm(9,-2);
+
+        createPalm(-10,5);
+
+        createPalm(10,5);
+
+    }
+
+
+    if(destination==="kerala"){
+
+        const arch=createLabel(
+            "🌴 KERALA WEDDING 🌴"
+        );
+
+        arch.position.set(
+            0,
+            4.8,
+            -8
+        );
+
+        arch.scale.set(
+            5,
+            1,
+            1
+        );
+
+        scene.add(arch);
+
+    }
+
+
+    if(destination==="palace"){
+
+        for(let x=-10;x<=10;x+=4){
+
+            const pillar=new THREE.Mesh(
+
+                new THREE.CylinderGeometry(
+                    .3,
+                    .4,
+                    6,
+                    16
+                ),
+
+                new THREE.MeshStandardMaterial({
+                    color:0xf0d274
+                })
+
+            );
+
+
+            pillar.position.set(
+                x,
+                3,
+                -9
+            );
+
+
+            scene.add(pillar);
+
+        }
+
+    }
+
+
+    if(destination==="mountain"){
+
+        for(let x=-12;x<=12;x+=5){
+
+            const mountain=new THREE.Mesh(
+
+                new THREE.ConeGeometry(
+                    3,
+                    6,
+                    5
+                ),
+
+                new THREE.MeshStandardMaterial({
+                    color:0x547e69
+                })
+
+            );
+
+
+            mountain.position.set(
+                x,
+                3,
+                -13
+            );
+
+
+            scene.add(mountain);
+
+        }
+
+    }
+
+}
+
+
+// ======================================================
+// PALM
+// ======================================================
+
+function createPalm(x,z){
+
+    const trunk=new THREE.Mesh(
+
+        new THREE.CylinderGeometry(
+            .25,
+            .4,
+            5
+        ),
+
+        new THREE.MeshStandardMaterial({
+            color:0x76502f
+        })
+
+    );
+
+
+    trunk.position.set(
+        x,
+        2.5,
+        z
+    );
+
+
+    scene.add(trunk);
+
+
+    for(let i=0;i<7;i++){
+
+        const leaf=new THREE.Mesh(
+
+            new THREE.ConeGeometry(
+                .45,
+                3,
+                8
+            ),
+
+            new THREE.MeshStandardMaterial({
+                color:0x29884b
+            })
+
+        );
+
+
+        leaf.position.set(
+
+            x+
+            Math.cos(i*Math.PI/3.5)*1.2,
+
+            5,
+
+            z+
+            Math.sin(i*Math.PI/3.5)*1.2
+
+        );
+
+
+        leaf.rotation.z=
+            Math.cos(i*Math.PI/3.5);
+
+
+        scene.add(leaf);
+
+    }
+
+}
+
+
+// ======================================================
+// PHOTOGRAPHER
+// ======================================================
+
+function createPhotographer(){
+
+    const group=new THREE.Group();
+
+
+    const body=new THREE.Mesh(
+
+        new THREE.CapsuleGeometry(
+            .65,
+            1.3,
+            8,
+            16
+        ),
+
+        new THREE.MeshStandardMaterial({
+            color:0x222222
+        })
+
+    );
+
+    body.position.y=1.3;
+
+    group.add(body);
+
+
+    const head=new THREE.Mesh(
+
+        new THREE.SphereGeometry(
+            .5,
+            20,
+            20
+        ),
+
+        new THREE.MeshStandardMaterial({
+            color:0xffc69c
+        })
+
+    );
+
+    head.position.y=2.65;
+
+    group.add(head);
+
+
+    // camera body
+
+    const cameraBody=new THREE.Mesh(
+
+        new THREE.BoxGeometry(
+            .8,
+            .55,
+            .45
+        ),
+
+        new THREE.MeshStandardMaterial({
+            color:0x111111
+        })
+
+    );
+
+
+    cameraBody.position.set(
+        0,
+        1.6,
+        -.75
+    );
+
+
+    group.add(cameraBody);
+
+
+    const lens=new THREE.Mesh(
+
+        new THREE.CylinderGeometry(
+            .22,
+            .22,
+            .4,
+            20
+        ),
+
+        new THREE.MeshStandardMaterial({
+            color:0x555555
+        })
+
+    );
+
+
+    lens.rotation.x=Math.PI/2;
+
+    lens.position.set(
+        0,
+        1.6,
+        -1
+    );
+
+
+    group.add(lens);
+
+
+    const label=createLabel("📸 PHOTOGRAPHER");
+
+    label.position.set(
+        0,
+        3.5,
+        0
+    );
+
+    label.scale.set(
+        2.7,
+        .6,
+        1
+    );
+
+    group.add(label);
+
+
+    group.position.set(
+        6,
+        0,
+        3
+    );
+
+
+    group.rotation.y=Math.PI;
+
+
+    return group;
+
+}
+
+
+// ======================================================
+// GUESTS
+// ======================================================
+
+function createGuests(){
+
+    guestsGroup=new THREE.Group();
+
+    const colors=[
+        0xff8fab,
+        0x8eb6ff,
+        0xffcf70,
+        0x9be28c,
+        0xc7a5ff
+    ];
+
+
+    for(let i=0;i<guestCount;i++){
+
+        const guest=new THREE.Group();
+
+
+        const body=new THREE.Mesh(
+
+            new THREE.CapsuleGeometry(
+                .35,
+                .7,
+                6,
+                10
+            ),
+
+            new THREE.MeshStandardMaterial({
+                color:colors[i%colors.length]
+            })
+
+        );
+
+
+        body.position.y=.75;
+
+        guest.add(body);
+
+
+        const head=new THREE.Mesh(
+
+            new THREE.SphereGeometry(
+                .3,
+                12,
+                12
+            ),
+
+            new THREE.MeshStandardMaterial({
+                color:0xffc69c
+            })
+
+        );
+
+
+        head.position.y=1.6;
+
+        guest.add(head);
+
+
+        let columns=10;
+
+        let row=Math.floor(i/columns);
+
+        let col=i%columns;
+
+        let startX=-(Math.min(
+            guestCount,
+            columns
+        )-1)*.7/2;
+
+
+        guest.position.set(
+
+            startX+col*.7,
+
+            0,
+
+            5+row*1.3
+
+        );
+
+
+        guestsGroup.add(guest);
+
+    }
+
+
+    scene.add(guestsGroup);
+
+}
+
+
+// ======================================================
+// RINGS
+// ======================================================
+
+function createRings(){
+
+    const ring1=new THREE.Mesh(
+
+        new THREE.TorusGeometry(
+            .3,
+            .08,
+            16,
+            32
+        ),
+
+        new THREE.MeshStandardMaterial({
+            color:0xffd700,
+            metalness:.8
+        })
+
+    );
+
+
+    const ring2=ring1.clone();
+
+
+    ring1.position.set(
+        -.45,
+        3.4,
+        0
+    );
+
+    ring2.position.set(
+        .45,
+        3.4,
+        0
+    );
+
+
+    ring1.rotation.x=Math.PI/2;
+
+    ring2.rotation.x=Math.PI/2;
+
+
+    scene.add(ring1);
+
+    scene.add(ring2);
+
+}
+
+
+// ======================================================
+// CONFETTI
+// ======================================================
+
+function createConfetti(){
+
+    for(let i=0;i<150;i++){
+
+        const piece=new THREE.Mesh(
+
+            new THREE.BoxGeometry(
+                .08,
+                .3,
+                .08
+            ),
+
+            new THREE.MeshStandardMaterial({
+
+                color:new THREE.Color(
+                    Math.random(),
+                    Math.random(),
+                    Math.random()
+                )
+
+            })
+
+        );
+
+
+        piece.position.set(
+
+            (Math.random()-.5)*18,
+
+            Math.random()*10+3,
+
+            (Math.random()-.5)*12
+
+        );
+
+
+        piece.rotation.set(
+            Math.random()*3,
+            Math.random()*3,
+            Math.random()*3
+        );
+
+
+        scene.add(piece);
+
+        confettiPieces.push(piece);
+
+    }
+
+}
+
+
+// ======================================================
+// WEDDING ANNOUNCEMENT
+// ======================================================
+
+function weddingAnnouncement(){
+
+    let message="";
+
+    if(budget<=50000){
+
+        message=
+        "The wedding was completed using pure confidence and ₹50,000.";
+
+    }
+    else if(budget<=500000){
+
+        message=
+        "The wedding was fancy enough for Instagram.";
+
+    }
+    else if(budget<=5000000){
+
+        message=
+        "This wedding had absolutely unnecessary levels of luxury.";
+
+    }
+    else{
+
+        message=
+        "₹5 CRORE HAS BEEN SPENT. SOMEONE CALL THE BANK.";
+
+    }
+
+
+    openPopup(
+        "💒 THE WEDDING HAS HAPPENED!",
+        `
+        <p><b>${yourName} ❤️ ${crushName}</b></p>
+
+        <p>${message}</p>
+
+        <p>
+        👨‍👩‍👧 Families have been informed.
+        </p>
+
+        <p>
+        🔒 There is no going back.
+        </p>
+        `
+    );
+
+}
+
+
+// ======================================================
+// WEDDING ANIMATION
+// ======================================================
+
+let weddingStartTime=0;
+
+function animate(){
+
+    requestAnimationFrame(animate);
+
+
+    if(
+        weddingStarted &&
+        !married
+    ){
+
+        if(!weddingStartTime)
+            weddingStartTime=Date.now();
+
+
+        const elapsed=
+            (Date.now()-weddingStartTime)/1000;
+
+
+        const progress=
+            Math.min(elapsed/5,1);
+
+
+        yourPerson.position.x=
+            -7 + 5.6*progress;
+
+
+        crushPerson.position.x=
+            7 - 5.6*progress;
+
+
+        yourPerson.position.y=
+            Math.abs(Math.sin(elapsed*8))*.05;
+
+
+        crushPerson.position.y=
+            Math.abs(Math.sin(elapsed*8+1))*.05;
+
+
+        document.getElementById("status").innerHTML=
+            progress<1
+            ? "🚶 Walking towards destiny..."
+            : "💍 MARRIED!!!";
+
+
+        if(progress>=1){
+
+            married=true;
+
+            createRings();
+
+            createConfetti();
+
+            weddingAnnouncement();
+
+            document.getElementById("status").innerHTML=
+                "💍 MARRIED!!!";
+
+        }
+
+    }
+
+
+    // confetti animation
+
+    confettiPieces.forEach(piece=>{
+
+        piece.position.y-=.025;
+
+        piece.rotation.x+=.03;
+
+        piece.rotation.z+=.02;
+
+
+        if(piece.position.y<0){
+
+            piece.position.y=
+                Math.random()*10+5;
+
+        }
+
+    });
+
+
+    // photographer idle animation
+
+    if(photographer){
+
+        photographer.position.y=
+            Math.sin(Date.now()*.003)*.03;
+
+    }
+
+
+    renderer.render(
+        scene,
+        camera
+    );
+
+}
+
+
+// ======================================================
+// PHOTOGRAPHER CLICK
+// ======================================================
+
+function photographerClick(){
+
+    if(!married){
+
+        openPopup(
+            "📷 PHOTOGRAPHER",
+            `
+            <p>
+            "Wedding first, photo later!"
+            </p>
+            <p>
+            The photographer refuses to work before the marriage.
+            </p>
+            `
+        );
+
+        return;
+
+    }
+
+
+    if(photoBusy)
+        return;
+
+
+    photoBusy=true;
+
+
+    document.getElementById("status").innerHTML=
+        "📸 PHOTOGRAPHER: EVERYBODY LOOK HERE!";
+
+
+    // move photographer forward
+
+    const originalX=photographer.position.x;
+
+    photographer.position.x=2.5;
+
+
+    setTimeout(()=>{
+
+        flashCamera();
+
+
+        document.getElementById("status").innerHTML=
+            "📷 SAY CHEEEEESE!!!";
+
+
+        setTimeout(()=>{
+
+            captureWeddingPhoto();
+
+
+            photographer.position.x=originalX;
+
+            document.getElementById("status").innerHTML=
+                "💍 MARRIED!!!";
+
+            photoBusy=false;
+
+        },250);
+
+
+    },500);
+
+}
+
+
+// ======================================================
+// CAMERA FLASH
+// ======================================================
+
+function flashCamera(){
+
+    const flash=
+        document.getElementById("flash");
+
+
+    flash.classList.add("active");
+
+
+    setTimeout(()=>{
+
+        flash.classList.remove("active");
+
+    },180);
+
+}
+
+
+// ======================================================
+// CAPTURE WEDDING PHOTO
+// ======================================================
+
+function captureWeddingPhoto(){
+
+    // temporary camera position
+
+    const oldPosition=
+        camera.position.clone();
+
+
+    const target=
+        new THREE.Vector3(
+            0,
+            2.5,
+            0
+        );
+
+
+    camera.position.set(
+        0,
+        5.2,
+        15
+    );
+
+
+    camera.lookAt(target);
+
+
+    renderer.render(
+        scene,
+        camera
+    );
+
+
+    latestWeddingPhoto=
+        renderer.domElement.toDataURL(
+            "image/png"
+        );
+
+
+    camera.position.copy(
+        oldPosition
+    );
+
+
+    camera.lookAt(
+        0,
+        2,
+        0
+    );
+
+
+    openPopup(
+
+        "📸 WEDDING PHOTO",
+
+        `
+        <img
+            class="photo"
+            src="${latestWeddingPhoto}"
+        >
+
+        <p>
+            📷 The photographer has cooked.
+        </p>
+
+        <p>
+            ✨ Camera Flash!
+        </p>
+
+        <p>
+            🎊 Confetti!
+        </p>
+
+        <p>
+            <b>Number of photos taken: 847</b>
+        </p>
+        `
+
+    );
+
+}
+
+
+// ======================================================
+// WEDDING PHOTO
+// ======================================================
+
+function weddingPhoto(){
+
+    if(!married){
+
+        openPopup(
+            "📸 Wedding Photo",
+            `
+            <p>
+            The photographer is still waiting for the wedding.
+            </p>
+            `
+        );
+
+        return;
+
+    }
+
+
+    if(!latestWeddingPhoto){
+
+        openPopup(
+
+            "📸 WEDDING PHOTO",
+
+            `
+            <div style="font-size:80px">
+                👰‍♀️🤵‍♂️
+            </div>
+
+            <p>
+                Your official wedding photo
+                hasn't been captured yet.
+            </p>
+
+            <p>
+                Click <b>📷 Photographer Click</b>
+                first!
+            </p>
+            `
+
+        );
+
+        return;
+
+    }
+
+
+    openPopup(
+
+        "📸 YOUR WEDDING PHOTO",
+
+        `
+        <img
+            class="photo"
+            src="${latestWeddingPhoto}"
+        >
+
+        <p>
+            ❤️ ${yourName} & ${crushName}
+        </p>
+
+        <p>
+            📍 ${destinationName()}
+        </p>
+        `
+
+    );
+
+}
+
+
+// ======================================================
+// WEDDING DISASTERS
+// ======================================================
+
+const disasters=[
+
+    "🤵 Groom forgot the wedding ring.",
+
+    "👨 Random uncle took over the stage.",
+
+    "📸 Photographer demanded the 63rd pose.",
+
+    "🎂 The cake mysteriously disappeared.",
+
+    "👩 Mother asked: 'When are the kids coming?'",
+
+    "🙏 Priest forgot what comes next.",
+
+    "💸 Wedding budget somehow became ₹87 crore.",
+
+    "👟 Someone stole the groom's chappal.",
+
+    "🎵 DJ played a completely unrelated song.",
+
+    "📸 Photographer fell into the decoration.",
+
+    "🚗 Everyone arrived except the couple.",
+
+    "🍗 Guests ate everything before the ceremony ended.",
+
+    "👥 37 extra guests arrived without invitation.",
+
+    "📷 Photographer took 900 photos.",
+
+    "💡 Power went out at the exact moment of the ceremony.",
+
+    "🐕 A random dog became the ring bearer.",
+
+    "🍰 Someone asked if the cake was free.",
+
+    "💃 One aunt started an unstoppable dance performance.",
+
+    "📱 Somebody livestreamed the entire wedding.",
+
+    "😬 The couple forgot which side they were supposed to stand on.",
+
+    "🥥 A coconut fell dramatically during the ceremony.",
+
+    "🎤 Uncle started giving a 45-minute speech.",
+
+    "👶 A baby started crying during the vows.",
+
+    "💰 The photographer charged extra for breathing."
 
 ];
 
 
-function weddingDisaster() {
+function weddingDisaster(){
 
-let disaster =
-disasters[
-Math.floor(
-Math.random()*disasters.length
-)
-];
-
-
-openPopup(
-
-"🚨 WEDDING DISASTER",
-
-`
-<div class="disaster-text">
-💥 ${disaster}
-</div>
-`
-
-);
-
-}
+    const disaster=
+        disasters[
+            Math.floor(
+                Math.random()*disasters.length
+            )
+        ];
 
 
-/* =========================
-   CERTIFICATE
-========================= */
+    openPopup(
 
-function showCertificate() {
+        "🚨 WEDDING DISASTER!",
 
-openPopup(
+        `
+        <div style="font-size:50px">
+            💥
+        </div>
 
-"📜 MARRIAGE CERTIFICATE",
+        <h3>${disaster}</h3>
 
-`
-<div class="cert">
+        <p>
+            Somehow the wedding continues.
+        </p>
+        `
 
-<h2>
-CERTIFICATE OF
-<br>
-COMPLETELY UNNECESSARY MARRIAGE
-</h2>
-
-<br>
-
-<p>This certifies that</p>
-
-<h2>
-${yourName} ❤️ ${crushName}
-</h2>
-
-<p>
-have been virtually married.
-</p>
-
-<br>
-
-<p>Wedding Destination</p>
-
-<b>
-${destination.toUpperCase()}
-</b>
-
-<br><br>
-
-<p>Status</p>
-
-<b>
-Unfortunately Married 😂
-</b>
-
-<br><br>
-
-<small>
-This certificate has absolutely
-NO legal value.
-</small>
-
-</div>
-`
-
-);
+    );
 
 }
 
 
-/* =========================
-   POPUP
-========================= */
+// ======================================================
+// BUDGET
+// ======================================================
 
-function openPopup(
-title,
-content
-) {
+function showBudget(){
 
-document.getElementById(
-"popupTitle"
-).innerText = title;
+    const spent=
+        Math.floor(
+            budget*(.35+Math.random()*.65)
+        );
 
-document.getElementById(
-"popupContent"
-).innerHTML = content;
 
-document.getElementById(
-"popup"
-).style.display = "flex";
+    const remaining=
+        budget-spent;
+
+
+    let status="Financially questionable.";
+
+    if(spent>budget*.9)
+        status="🚨 Financial emergency.";
+
+    else if(spent>budget*.7)
+        status="😰 Wallet crying.";
+
+    else
+        status="😌 Surprisingly responsible.";
+
+
+    openPopup(
+
+        "💰 WEDDING BUDGET",
+
+        `
+        <p>
+            <b>Original Budget:</b>
+            ${money(budget)}
+        </p>
+
+        <p>
+            <b>Spent:</b>
+            ${money(spent)}
+        </p>
+
+        <p>
+            <b>Remaining:</b>
+            ${money(remaining)}
+        </p>
+
+        <hr>
+
+        <p>
+            👥 Guests: ${guestCount}
+        </p>
+
+        <p>
+            📸 Photographer: Paid
+        </p>
+
+        <p>
+            💍 Rings: Paid
+        </p>
+
+        <p>
+            🎂 Cake: Paid
+        </p>
+
+        <p>
+            🎊 Confetti: Completely unnecessary
+        </p>
+
+        <h3>${status}</h3>
+        `
+
+    );
 
 }
 
 
-function closePopup() {
+// ======================================================
+// CERTIFICATE
+// ======================================================
 
-document.getElementById(
-"popup"
-).style.display = "none";
+function showCertificate(){
+
+    openPopup(
+
+        "📜 MARRIAGE CERTIFICATE",
+
+        `
+        <div class="certificate">
+
+            <h2>
+                💍 VIRTUAL MARRIAGE CERTIFICATE
+            </h2>
+
+            <p>
+                This certifies that
+            </p>
+
+            <h3>
+                ${yourName}
+                ❤️
+                ${crushName}
+            </h3>
+
+            <p>
+                have successfully completed
+                an unnecessarily complicated
+                virtual wedding.
+            </p>
+
+            <p>
+                📍 ${destinationName()}
+            </p>
+
+            <p>
+                💰 Budget: ${money(budget)}
+            </p>
+
+            <p>
+                👥 Guests: ${guestCount}
+            </p>
+
+            <p>
+                💍 Status: UNFORTUNATELY MARRIED
+            </p>
+
+            <hr>
+
+            <small>
+                This certificate has absolutely
+                ZERO legal value.
+            </small>
+
+        </div>
+        `
+
+    );
 
 }
 
 
-/* =========================
-   DIVORCE
-========================= */
+// ======================================================
+// VISA
+// ======================================================
 
-function divorce() {
+function showVisa(){
 
-document.getElementById(
-"divorceNames"
-).innerText =
-yourName +
-" ❤️ " +
-crushName;
+    openPopup(
 
-document.getElementById(
-"divorceScreen"
-).style.display =
-"flex";
+        "✈️ VISA",
+
+        `
+        <div class="visa">
+
+            <div class="visa-title">
+                INTERNATIONAL MARRIAGE VISA
+            </div>
+
+            <div class="visa-approved">
+                ✅ VISA APPROVED
+            </div>
+
+            <p>
+                <b>Applicant 1:</b>
+                ${yourName}
+            </p>
+
+            <p>
+                <b>Applicant 2:</b>
+                ${crushName}
+            </p>
+
+            <p>
+                <b>Relationship:</b>
+                Virtually Married
+            </p>
+
+            <p>
+                <b>Wedding Destination:</b>
+                ${destinationName()}
+            </p>
+
+            <p>
+                <b>Visa Type:</b>
+                Spouse Visa™
+            </p>
+
+            <p>
+                <b>Application Status:</b>
+                APPROVED
+            </p>
+
+            <p>
+                <b>Visa Validity:</b>
+                Until Divorce
+            </p>
+
+            <hr>
+
+            <p>
+                ✈️ Congratulations!
+                You may now travel together
+                in the virtual universe.
+            </p>
+
+            <small>
+                ⚠️ This is a fictional virtual visa
+                for entertainment only. It is NOT a
+                real travel document.
+            </small>
+
+        </div>
+        `
+
+    );
 
 }
 
 
-/* =========================
-   RESIZE
-========================= */
+// ======================================================
+// WEDDING ANNOUNCEMENT AFTER PHOTO / OTHER EVENTS
+// ======================================================
+
+
+// ======================================================
+// DIVORCE
+// ======================================================
+
+function divorce(){
+
+    document.getElementById("divorceText").innerHTML=
+
+        `
+        ${yourName} and ${crushName}
+        have officially ended their
+        extremely successful virtual marriage.
+        `;
+
+
+    document.getElementById("divorceScreen").style.display=
+        "flex";
+
+}
+
+
+// ======================================================
+// RESIZE
+// ======================================================
 
 window.addEventListener(
-"resize",
-() => {
+    "resize",
+    ()=>{
 
-if(!camera || !renderer)
-return;
+        if(!camera || !renderer)
+            return;
 
-camera.aspect =
-window.innerWidth /
-window.innerHeight;
 
-camera.updateProjectionMatrix();
+        camera.aspect=
+            window.innerWidth/
+            window.innerHeight;
 
-renderer.setSize(
-window.innerWidth,
-window.innerHeight
+
+        camera.updateProjectionMatrix();
+
+
+        renderer.setSize(
+            window.innerWidth,
+            window.innerHeight
+        );
+
+    }
 );
-
-});
 
 </script>
 
