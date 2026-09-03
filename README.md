@@ -6,35 +6,40 @@
 
 
 ## Basic Details
-### Team Name: [DecodeX]
+### Team Name: DecodeX
 
 
 ### Team Members
-- Team Lead: [Lavanya S] - [LBS Institute Of Technology For Women]
-- Member 2: [Nakshatara S Nair] - [LBS Institute Of Technology For Women]
+- Team Lead: Lavanya S - LBS Institute Of Technology For Women
+- Member 2: Nakshatara S Nair - LBS Institute Of Technology For Women
 
 
 ### Project Description
-["Oru Kalyanam Okke Vende??💍" is a hilarious Virtual Marriage Simulator where you can create your dream wedding with a virtual partner, choose the destination, budget, and even get a wedding photo. Complete with unexpected wedding disasters and a divorce button—because real-life commitment is scary, but virtual commitment has an undo button. 😂]
+Oru Kalyanam Okke Vende?? is a fun virtual wedding experience where users can plan and experience their own dream wedding with their crush. 💍
+With 3D visuals, wedding disasters, photography, budget, honeymoon, visa, and even divorce, it turns an ordinary website into a hilariously unnecessary wedding journey. 😂
 
 ### The Problem (that doesn't exist)
-[Some people have a very serious problem: they want to marry their crush, but reality has other plans. 💔💍 There is currently no proper solution for experiencing that dream wedding when it has approximately 0% chance of happening in real life. 😭]
+Some people have a very serious problem: they want to marry their crush, but reality has other plans. 💔💍 There is currently no proper solution for experiencing that dream wedding when it has approximately 0% chance of happening in real life. 😭
 
 ### The Solution (that nobody asked for)
-[So we decided to fix this extremely important problem with absolutely unnecessary technology. 😂 Enter your crush, plan the wedding, choose the destination, take wedding photos, survive disasters, and even get divorced—all virtually, with zero chance of your crush finding out. 💀]
+We had decided to solve this extremely important problem with some absolutely unnecessary technology😂.  Enter your crush, plan the wedding, guests, destination, honeymoon, and budget, take wedding photos, survive disasters, and even get divorced — all virtually, with zero real-life consequences. 💀💍
 
 ## Technical Details
 ### Technologies/Components Used
-For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
 
-For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
+Languages Used
+
+HTML5,CSS3,JavaScript
+
+Frameworks  Used
+
+Three.js
+
+Tools Used
+
+VS Code 
+Web Browser 
+jsDelivr CDN 
 
 ### Implementation
 For Software:
