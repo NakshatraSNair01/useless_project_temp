@@ -21,19 +21,194 @@ body{
     overflow:hidden;
 }
 
+/* Website landing-page presentation only — existing functionality/assets preserved */
+.setup{
+    min-height:100vh;
+    position:relative;
+    overflow:auto;
+    padding:0;
+    display:block;
+    background:
+        radial-gradient(circle at 12% 18%, rgba(255,255,255,.18), transparent 28%),
+        radial-gradient(circle at 88% 80%, rgba(255,255,255,.12), transparent 30%),
+        linear-gradient(120deg,#f05b83 0%,#d45b9b 45%,#8e44ad 100%);
+}
+
+.site-header{
+    height:74px;
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6vw;
+    background:rgba(255,255,255,.97);
+    border-bottom:1px solid rgba(0,0,0,.06);
+    box-shadow:0 2px 18px rgba(0,0,0,.10);
+    position:relative;
+    z-index:5;
+}
+
+.site-brand{
+    font-size:21px;
+    font-weight:700;
+    color:#222;
+    letter-spacing:-.2px;
+}
+
+.site-nav{
+    display:flex;
+    gap:28px;
+    align-items:center;
+    color:#555;
+    font-size:14px;
+    font-weight:600;
+}
+
+.site-nav span:last-child{
+    color:#d33d82;
+}
+
+.setup-content{
+    width:min(1180px,90%);
+    min-height:calc(100vh - 74px);
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1fr 1.05fr;
+    align-items:center;
+    gap:80px;
+    padding:55px 0 65px;
+}
+
+.hero-copy{
+    color:white;
+    max-width:520px;
+}
+
+.hero-kicker{
+    display:inline-block;
+    margin-bottom:18px;
+    padding:7px 13px;
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:999px;
+    background:rgba(255,255,255,.12);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.8px;
+    text-transform:uppercase;
+}
+
+.hero-copy h2{
+    margin:0 0 16px;
+    font-size:clamp(42px,5vw,68px);
+    line-height:1.02;
+    letter-spacing:-2px;
+}
+
+.hero-copy p{
+    margin:0;
+    max-width:470px;
+    font-size:18px;
+    line-height:1.65;
+    color:rgba(255,255,255,.9);
+}
+
+.hero-note{
+    margin-top:28px;
+    font-size:13px;
+    color:rgba(255,255,255,.75);
+}
+
+.setup .panel{
+    width:100%;
+    max-width:650px;
+    justify-self:end;
+    background:rgba(255,255,255,.98);
+    padding:34px 38px 30px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.7);
+    box-shadow:0 20px 55px rgba(72,22,69,.25);
+}
+
+.setup .panel h1{
+    text-align:left;
+    margin:0 0 7px;
+    font-size:30px;
+    color:#222;
+}
+
+.setup .subtitle{
+    text-align:left;
+    margin:0 0 22px;
+    color:#777;
+    font-size:13px;
+}
+
+@media(max-width:900px){
+    .setup-content{
+        grid-template-columns:1fr;
+        gap:30px;
+        padding:40px 0 55px;
+    }
+
+    .hero-copy{
+        max-width:700px;
+        text-align:center;
+        margin:auto;
+    }
+
+    .hero-copy p,
+    .hero-note{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .setup .panel{
+        justify-self:center;
+        max-width:650px;
+    }
+}
+
+@media(max-width:600px){
+    .site-header{
+        height:64px;
+        padding:0 20px;
+    }
+
+    .site-brand{
+        font-size:17px;
+    }
+
+    .site-nav{
+        gap:12px;
+        font-size:11px;
+    }
+
+    .setup-content{
+        width:92%;
+        min-height:calc(100vh - 64px);
+        padding:32px 0 45px;
+    }
+
+    .hero-copy h2{
+        font-size:42px;
+        letter-spacing:-1.5px;
+    }
+
+    .hero-copy p{
+        font-size:15px;
+    }
+
+    .setup .panel{
+        padding:27px 22px 24px;
+        border-radius:16px;
+    }
+}
+
+
 button,
 select,
 input{
     font-family:inherit;
-}
-
-.setup{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    background:linear-gradient(135deg,#ff758c,#8e44ad);
 }
 
 .panel{
@@ -301,6 +476,23 @@ input{
 
 @media(max-width:600px){
 
+    .setup{
+        padding-top:78px;
+        padding-bottom:42px;
+    }
+
+    .setup::before{
+        height:58px;
+        font-size:13px;
+        white-space:nowrap;
+        overflow:hidden;
+    }
+
+    .setup::after{
+        font-size:11px;
+        bottom:10px;
+    }
+
     .panel{
         padding:22px;
     }
@@ -320,6 +512,231 @@ input{
 
 }
 
+
+/* 100% screen-fit refinement: visual spacing only */
+.setup{
+    min-height:100vh;
+    height:100vh;
+    overflow:hidden;
+}
+
+.site-header{
+    height:64px;
+}
+
+.setup-content{
+    min-height:calc(100vh - 64px);
+    height:calc(100vh - 64px);
+    padding:22px 0 24px;
+    gap:52px;
+}
+
+.hero-copy{
+    max-width:500px;
+}
+
+.hero-kicker{
+    margin-bottom:12px;
+    padding:6px 12px;
+}
+
+.hero-copy h2{
+    font-size:clamp(40px,4.2vw,58px);
+    line-height:1;
+    margin-bottom:12px;
+}
+
+.hero-copy p{
+    font-size:16px;
+    line-height:1.45;
+}
+
+.hero-note{
+    margin-top:18px;
+    font-size:12px;
+}
+
+.setup .panel{
+    max-width:610px;
+    padding:24px 30px 22px;
+    border-radius:18px;
+}
+
+.setup .panel h1{
+    font-size:28px;
+    margin-bottom:5px;
+}
+
+.setup .subtitle{
+    font-size:12px;
+    margin-bottom:14px;
+}
+
+.field{
+    margin-bottom:8px;
+}
+
+.field label{
+    margin-bottom:4px;
+    font-size:13px;
+}
+
+.field input,
+.field select{
+    padding:9px 11px;
+    border-radius:10px;
+    font-size:14px;
+}
+
+.start-btn{
+    padding:12px;
+    border-radius:12px;
+    font-size:16px;
+    margin-top:5px;
+}
+
+@media(max-width:900px){
+    .setup{
+        height:auto;
+        min-height:100vh;
+        overflow:auto;
+    }
+
+    .setup-content{
+        height:auto;
+        min-height:calc(100vh - 64px);
+        padding:28px 0 38px;
+        gap:26px;
+    }
+}
+
+@media(max-width:600px){
+    .setup-content{
+        min-height:calc(100vh - 64px);
+        padding:22px 0 30px;
+    }
+
+    .hero-copy h2{
+        font-size:38px;
+    }
+
+    .setup .panel{
+        padding:22px 20px 20px;
+    }
+}
+
+
+/* Final compact desktop fit: presentation-only adjustments */
+.site-header{
+    display:none;
+}
+
+.setup{
+    height:100vh;
+    min-height:100vh;
+    overflow:hidden;
+}
+
+.setup-content{
+    width:min(1160px,92%);
+    min-height:100vh;
+    height:100vh;
+    padding:18px 0 20px;
+    gap:48px;
+    align-items:center;
+}
+
+.hero-copy{
+    max-width:500px;
+}
+
+.hero-kicker{
+    margin-bottom:10px;
+    padding:5px 11px;
+    font-size:11px;
+}
+
+.hero-copy h2{
+    font-size:clamp(38px,4vw,54px);
+    line-height:.98;
+    margin-bottom:11px;
+}
+
+.hero-copy p{
+    font-size:15px;
+    line-height:1.4;
+}
+
+.hero-note{
+    margin-top:15px;
+    font-size:11px;
+}
+
+.setup .panel{
+    max-width:590px;
+    padding:19px 26px 18px;
+    border-radius:16px;
+}
+
+.setup .panel h1{
+    font-size:26px;
+    margin-bottom:4px;
+}
+
+.setup .subtitle{
+    font-size:11px;
+    margin-bottom:11px;
+}
+
+.field{
+    margin-bottom:6px;
+}
+
+.field label{
+    margin-bottom:3px;
+    font-size:12px;
+}
+
+.field input,
+.field select{
+    padding:7px 10px;
+    border-radius:9px;
+    font-size:13px;
+}
+
+.start-btn{
+    padding:10px;
+    border-radius:10px;
+    font-size:15px;
+    margin-top:3px;
+}
+
+@media(max-width:900px){
+    .setup-content{
+        width:92%;
+        height:auto;
+        min-height:100vh;
+        padding:18px 0 24px;
+        gap:22px;
+    }
+}
+
+@media(max-width:600px){
+    .setup-content{
+        width:94%;
+        padding:14px 0 20px;
+        gap:18px;
+    }
+
+    .hero-copy h2{
+        font-size:34px;
+    }
+
+    .setup .panel{
+        padding:18px 18px 16px;
+    }
+}
+
 </style>
 </head>
 
@@ -329,7 +746,25 @@ input{
 
 <div class="setup" id="setup">
 
-    <div class="panel">
+    <header class="site-header">
+        <div class="site-brand">💍 Kalyanam Kazhinjo?</div>
+        <nav class="site-nav" aria-label="Main navigation">
+            <span>Home</span>
+            <span>How It Works</span>
+            <span>Make a Bad Decision</span>
+        </nav>
+    </header>
+
+    <main class="setup-content">
+
+        <section class="hero-copy">
+            <div class="hero-kicker">Virtual Wedding Simulator</div>
+            <h2>Turn your crush into a questionable life decision.</h2>
+            <p>Plan the wedding, pick the destination, invite the guests, choose the honeymoon and see how beautifully everything goes wrong.</p>
+            <div class="hero-note">No real marriage. No real visa. Just unnecessarily serious wedding planning.</div>
+        </section>
+
+        <div class="panel">
 
         <h1>💍 Kalyanam Kazhinjo?</h1>
 
@@ -458,7 +893,9 @@ input{
             💒 Start The Bad Decision
         </button>
 
-    </div>
+        </div>
+
+    </main>
 
 </div>
 
