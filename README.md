@@ -42,61 +42,44 @@ Web Browser
 jsDelivr CDN 
 
 ### Implementation
-For Software:
-# Installation
-[commands]
+The project also includes interactive forms, popups, wedding events, photography, budget, honeymoon, visa, marriage certificate, and divorce features.
 
-# Run
-[commands]
 
 ### Project Documentation
-For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+OPENING PORTAL OF THE WEBSITE
+<img width="1920" height="970" alt="Screenshot (6)" src="https://github.com/user-attachments/assets/4f33eef6-4ec4-4137-8931-eb9a60633b30" />
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+MARRIAGE VENUE
+<img width="1920" height="967" alt="Screenshot (3)" src="https://github.com/user-attachments/assets/79a930c8-d71d-40b7-9d73-41353e6ae8fb" />
+
+FEATURE-MARRIAGE CERTIFICATE
+<img width="1920" height="968" alt="Screenshot (2)" src="https://github.com/user-attachments/assets/911d7612-cc17-4de3-ad19-c48bdb36fb66" />
+
+
 
 # Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
 *Add caption explaining your workflow*
 
-For Hardware:
 
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
-
-# Build Photos
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
 
 ![Final](Add photo of final product here)
 *Explain the final build*
 
 ### Project Demo
 # Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
 
-# Additional Demos
-[Add any extra demo materials/links]
+
+
+
+
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- Nakshatra S Nair: Idea Formatting
+- Lavanya S: Coding
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
