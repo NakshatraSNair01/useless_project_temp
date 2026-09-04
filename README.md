@@ -2,7 +2,9 @@
 
 
 
-# [Oru Kalyanam Okke Vende??] 🎯
+# 
+
+Oru Kalyanam Okke Vende?? 🎯
 
 
 ## Basic Details
@@ -47,7 +49,7 @@ The project also includes interactive forms, popups, wedding events, photography
 
 ### Project Documentation
 
-# Screenshots (Add at least 3)
+# Screenshots
 
 OPENING PORTAL OF THE WEBSITE
 <img width="1920" height="970" alt="Screenshot (6)" src="https://github.com/user-attachments/assets/4f33eef6-4ec4-4137-8931-eb9a60633b30" />
@@ -61,21 +63,20 @@ FEATURE-MARRIAGE CERTIFICATE
 
 
 # Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
+This is our workflow.
+<img width="1536" height="1024" alt="17c5dade1f39af15663057beb61282140c1e6a21f5269433241231e77a750cc6" src="https://github.com/user-attachments/assets/62b8b2cd-72df-430e-8014-6c9ed7ad4e41" />
 
 
 
-![Final](Add photo of final product here)
-*Explain the final build*
+
+
+This is the final project outlook.
+<img width="1920" height="970" alt="Screenshot (6)" src="https://github.com/user-attachments/assets/c83c3217-a8c6-4816-8178-1dc58572d389" />
+
 
 ### Project Demo
 # Video
-
-
-
-
-
+https://github.com/user-attachments/assets/67dd1e10-2778-4d17-9682-92532c4b325e
 
 ## Team Contributions
 - Nakshatra S Nair: Idea Formatting
